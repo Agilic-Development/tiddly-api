@@ -42,18 +42,9 @@ class TiddlyBot():
         servo = PWM.Servo()
     
     def update(self):
-        global count, led_counter, current_left, current_right, led_light_show
-        ## every loop, execute this logic
-        count += 1
-        if count >= 10:
-            current_left = self.update_servos(current_left, target_left, left_motor)
-            current_right = self.update_servos(current_right, target_right, right_motor)
-            if led_light_show:  # Logic for led light show
-                if int(round(led_counter)) == 6: 
-                    led_counter = 0
-                led_counter += 0.2
-                self.led_display(int(round(led_counter)))
-            count = 0
+        global current_left, current_right
+        current_left = self.update_servos(current_left, target_left, left_motor)
+        current_right = self.update_servos(current_right, target_right, right_motor)
 
         ## Logic for TiddlyBot
     @staticmethod
